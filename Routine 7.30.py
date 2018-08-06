@@ -98,7 +98,9 @@ class PornStar(Person):
         aragaki.setLable('cute brave')
         print(aragaki.label)
 
-nums= list(range(1,2))
+nums = list(range(1, 2))
+
+
 def function(k, nums):
     i = 0
     while i < k:
@@ -106,4 +108,4 @@ def function(k, nums):
         i += 1
     return nums
 
-print(function(0,nums))
+print(function(0, nums))
