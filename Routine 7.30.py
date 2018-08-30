@@ -15,7 +15,7 @@ class Person():
     """
 
     create_date = datetime.now()
-    # 外界对这个人的评价,不应该出现在inti方法中
+    # 外界对这个人的评价,不应该出现在init方法中
     label = []
 
     def __init__(self, race: str, faith: str, age: date, name: str, job=None, pay=0) -> None:
@@ -57,55 +57,77 @@ class Person():
 
 
 class PornStar(Person):
+
+    # 定制构造函数
+    # 当我们创建PornStar时
+    # 该对象的默认job 即是pornstar
+    # so job 将没有键入的意义
+    # so
+    def __init__(self, race: str, faith: str, age: date, name: str, pay=0):
+        Person.__init__(self, race, faith, age, name, job='PornStar')
+
     # PornStar 不宜以真实姓名示人(希望仁义廉耻能够继续下去)
     # so 我们应该重写其方法
     # example-1
     # 不易于维护的方法,但我很好奇,哪个沙雕会这样写代码
     category = []
 
-    def setLable(self, word: str):
-        keyword = ['time']
-        if isinstance(word, str):
-            self.label.extend(word.split())
-        elif isinstance(word, dict):
-            for k in word:
-                if k in keyword:
-                    self.label.append(word[k])
-        # 为了加上这段代码,我们copy了整个setLable方法
-        if self.category:
-            self.label.extend(self.category)
+    # def setLable(self, word: str):
+    #     keyword = ['time']
+    #     if isinstance(word, str):
+    #         self.label.extend(word.split())
+    #     elif isinstance(word, dict):
+    #         for k in word:
+    #             if k in keyword:
+    #                 self.label.append(word[k])
+    #     # 为了加上这段代码,我们copy了整个setLable方法
+    #     if self.category:
+    #         self.label.extend(self.category)
+    #     else:
+    #         raise IOError
+
+    def setLable(self, word: str, category: list):
+        Person.setLable(self, word)
+        if category:
+            self.category.extend(category)
         else:
             raise IOError
 
-    def setLable(self):
-        pass
+    def show_her_self(self):
+        return 'as a girl, she is %s, as a star, she is %s' % (', '.join(self.label),', '.join(self.category) )
+        
 
-    if __name__ == '__main__':
-        aragaki = Person(race='Asia', faith='', name='Aragaki Yui',
-                         age=date(1988, 6, 11), job='Shine Star')
-        # 此时,我们要获取gakki的lastname
-        aragaki_last_name = aragaki.name.split()[-1]
-        print(aragaki_last_name)
-        # 然鹅,我们发现,如果接下来要取gakki的fistname作为lastname(总之就是取值方法变了,比如aragaki.name.split()[-1] + '<<>>')
-        # 但是,这段代码已经被无数个类调用了,(毕竟云老婆(〃'▽'〃))
-        # 我们就需要改写这段代码, 在emabc是就发现,这是一件大工程
-        # 如果getlastname 作为一个方法()在类内,岂不是很 van ♂ 美
-        # 这个()里面填的词,就是 >>封装<<
+if __name__ == '__main__':
+    aragaki = Person(race='Asia', faith='', name='Aragaki Yui',
+                     age=date(1988, 6, 11), job='Shine Star')
+    # 此时,我们要获取gakki的lastname
+    aragaki_last_name = aragaki.name.split()[-1]
+    print(aragaki_last_name)
+    # 然鹅,我们发现,如果接下来要取gakki的fistname作为lastname(总之就是取值方法变了,比如aragaki.name.split()[-1] + '<<>>')
+    # 但是,这段代码已经被无数个类调用了,(毕竟云老婆(〃'▽'〃))
+    # 我们就需要改写这段代码, 在emabc是就发现,这是一件大工程
+    # 如果getlastname 作为一个方法()在类内,岂不是很 van ♂ 美
+    # 这个()里面填的词,就是 >>封装<<
 
-        # 就是tmd这么简单
-        print(aragaki.getLastname(), '\n', aragaki)
-        aragaki.setLable({'time': 'not enough'})
-        aragaki.setLable('cute brave')
-        print(aragaki.label)
+    # 就是tmd这么简单
+    print(aragaki.getLastname(), '\n', aragaki)
+    aragaki.setLable({'time': 'not enough'})
+    aragaki.setLable('cute brave')
+    print(aragaki.label)
 
-nums = list(range(1, 2))
+    stella = PornStar(race='White', faith='money', age='26', name='Stella Cox')
+    stella.setLable({'skin':'like snow'}, ['smile', 'enjoyable'])
+    print(stella.show_her_self())
+    
+
+# nums = list(range(1, 2))
 
 
-def function(k, nums):
-    i = 0
-    while i < k:
-        nums.insert(0, nums.pop())
-        i += 1
-    return nums
+# def function(k, nums):
+#     i = 0
+#     while i < k:
+#         nums.insert(0, nums.pop())
+#         i += 1
+#     return nums
 
-print(function(0, nums))
+# print(function(0, nums))
