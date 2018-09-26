@@ -26,3 +26,20 @@ def fuc1(text: str, max_len: 'int > 0' = 100) -> str:
     return 'xx'
 
 a = [{'k': 'v'}]
+# 规约函数
+from collections import namedtuple
+latlong = namedtuple('latlong', 'lat long')
+
+l = list(range(10))
+def func1():
+    l = 9999
+
+func1()
+print(l)
+
+def fuc2(a, **b):
+    print(type(b))
+
+fuc2(1, d='c', c = list(range(10)))
+
+    
