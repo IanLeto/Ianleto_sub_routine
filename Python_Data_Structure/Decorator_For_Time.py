@@ -98,6 +98,11 @@ import functools
 
 
 def clock2(func):
+    """
+
+    :param func:接收测试的函数
+    :return:
+    """
     def clocked(*args, **kwargs):
         t0 = time.time()
         res = func(*args)
@@ -135,23 +140,23 @@ def fibonacci(n):
     return fibonacci(n - 2) + fibonacci(n - 1)
 
 
-import html
+# import html
 
 # python 重载
 
 from functools import singledispatch
 
 
-@singledispatch
-def htmlize(obj):
-    content = html.escape(repr(obj))
-    return '<p>{}<p>'.format(content)
-
-
-@htmlize.register(str)
-def _(text):
-    content = html.escape(text).replace('\n', '<br>\n')
-    return '<h1>{0}<h1>'.format(content)
+# @singledispatch
+# def htmlize(obj):
+#     content = html.escape(repr(obj))
+#     return '<p>{}<p>'.format(content)
+#
+#
+# @htmlize.register(str)
+# def _(text):
+#     content = html.escape(text).replace('\n', '<br>\n')
+#     return '<h1>{0}<h1>'.format(content)
 
 
 def a(func):
@@ -171,4 +176,4 @@ if __name__ == '__main__':
     # snooze(1)
     # func()
     print(fibonacci(10))
-    print(htmlize('asfd'))
+    # print(htmlize('asfd'))
