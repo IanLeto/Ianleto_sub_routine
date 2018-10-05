@@ -29,18 +29,34 @@ def func1(a=False):
     return a
 
 
+class d:
+
+    def c(func):
+
+        def cc(self, i):
+            if i > 10:
+                return i
+            else:
+                a = func(self, i)
+                return a
+
+        return cc
+
+    @c
+    def func1(self, i: int):
+        return i * 2
+
+
 def main():
     a1 = decorator1()
-    a2 = func1_decorator1()
+    # a2 = func1_decorator1()
     a3 = func1()
     print(a1)
-    print(a2)
+    # print(a2)
     print(a3)
+    dddd = d()
+    print(dddd.func1(4))
 
-class Star():
-    pass
-    
-    
 
 if __name__ == '__main__':
     main()
