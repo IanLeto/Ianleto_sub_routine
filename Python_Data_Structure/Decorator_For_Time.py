@@ -131,6 +131,9 @@ def func():
         count += 1
     return count
 
+@clock2
+def func3(i:int):
+    return i*2
 
 @clock2
 @functools.lru_cache()
@@ -176,4 +179,5 @@ if __name__ == '__main__':
     # snooze(1)
     # func()
     print(fibonacci(10))
+    print(func3(100))
     # print(htmlize('asfd'))

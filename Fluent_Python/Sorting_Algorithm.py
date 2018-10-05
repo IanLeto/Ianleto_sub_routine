@@ -11,25 +11,18 @@ import random
 def swap(slist: list, i, j):
     slist[i], slist[j] = slist[j], slist[i]
 
-# def checkone(func):
-#     def check(*args):
-#         if 2 == 1:
-#             return 1
-#         else:
-#             func(*args)
-#
-#     return check
 
 class SortAlgor:
 
-    # def checkone(self, func):
-    #     def check(*args):
-    #         if 2 == 1:
-    #             return 1
-    #         else:
-    #             func(*args)
-    #
-    #     return check
+    def checkone(func):   # 这个紫色的提示，真尼玛误导人
+        def check(self, slist: list):
+            if len(slist) <= 1:
+                return slist
+            else:
+                res = func(self, slist)
+                return res
+
+        return check
 
     def selection_sort(self, slist: list) -> list:
         """
@@ -52,7 +45,7 @@ class SortAlgor:
 
         return slist
 
-    # @checkone
+    @checkone
     def bubbleSort(self, slist: list) -> list:
         """
         :param slist: 接受参数为ｌｉｓｔ
@@ -71,7 +64,7 @@ class SortAlgor:
                 i += 1
             if not swapped:
                 return slist
-            n -= 1  # 　最后一项拍好了，所以ｌｉｓｔ长度－１
+            n -= 1                                            # 　最后一项拍好了，所以ｌｉｓｔ长度－１
 
     def insertSort(self, slist: list) -> list:
         """
@@ -94,6 +87,36 @@ class SortAlgor:
             slist[j + 1] = itemToInsert
             i += 1
         return slist
+
+    def quick(self, slist: list):
+
+        def quick_sort(slist):
+            quick_sort_helper(slist, 0, len(slist) - 1)
+
+        def quick_sort_helper(left, right):
+            if left < right:
+                pivotLocation = partition(slist, left, right)
+                quick_sort_helper(slist, left, pivotLocation - 1)
+                quick_sort_helper(slist, pivotLocation + 1, right)
+
+        def partition(slist: list, left, right):
+            """
+
+            :param slist:
+            :param left:
+            :param right:
+            :return:
+            """
+            middle = (left + right) // 2
+            pivot = slist[middle]
+            slist[middle], slist[right] = slist[right], slist[middle]
+            boundary = left
+            for i in range(left, right):
+                if slist[i] < pivot:
+                    swap(slist, i, boundary)
+                    boundary += 1
+            swap(slist, right, boundary)
+            return boundary
 
 
 class TestAlgorithm(unittest.TestCase):
